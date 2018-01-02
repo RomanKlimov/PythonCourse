@@ -1,0 +1,42 @@
+body {
+    background-color: rgb(240, 230, 230);
+}
+
+.message {
+    margin: 1% 1%;
+    padding: 1% 2%;
+    background-color: rgb(200, 202, 202);
+}
+
+.message-content {
+    font-size: 120%;
+}
+
+.reply {
+    margin: 1% 0%;
+}
+
+.replies {
+    margin: 1% 0%;
+    font-size: 80%;
+}
+
+.post-form {
+    width: 70%;
+    margin: 5% 15%;
+}
+
+.post-form label {
+    display: none;
+}
+
+.post-form textarea {
+    width: 100%;
+    margin: 2% 0%;
+}
+
+.post-form button {
+    width: 20%;
+    font-size: 120%;
+    margin-left: 40%;
+}

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+        <title>
+            2CH
+        </title>
+    </head>
+    <body>
+        <form method="post" class="post-form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Post</button>
+        </form>
+            <div class="messages">
+                {% csrf_token %}
+                {% if messages %}
+                    {% for m in messages %}
+                        <div id={{ m.id }} class="message">
+                            Anonymous {{ m.date }} <a href="#{{ m.id }}">№</a> <a href="replyto/{{ m.id }}">{{ m.id }}</a>
+                            <hr>
+                            <div class="reply">
+                                    {% if m.reply_to %}
+                                        <a href="#{{ m.reply_to.id }}">>> {{ m.reply_to.id }}</a>
+                                    {% endif %}
+                                </div>
+                            <div class="message-content">
+                                {{ m.text }}
+                            </div>
+                            {% if m.replies %}
+                                <div class="replies">
+                                    replies: 
+                                    {% for rep in m.replies %}
+                                        <a href="#{{ rep.id }}">>> {{ rep.id }}</a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+    </body>
+</html>
