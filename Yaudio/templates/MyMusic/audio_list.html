@@ -1,0 +1,33 @@
+{% extends 'MyMusic/base.html' %}
+{% block content %}
+    <h2>Available tracks</h2><br>
+    {% for track in tracks %}
+        <div class="track" style="margin-bottom: 10px" id="track-{{ track.id }}">
+            <a href="{% url 'artist_songs' track.artist.id %}">{{ track.artist }}</a> - {{ track.title }} (likes:
+            <span class="like-number">{{ track.liked.count }}</span>)<br>
+            <button type="submit" onclick="button({{ track.id }})">like it</button>
+        </div>
+    {% endfor %}
+    <script>
+        function button(id) {
+            $.ajax({
+                type: 'post',
+                url: '{% url 'like' %}',
+                data: {'id': id},
+                statusCode: {
+                    201: function(){
+                        console.log(201, 'created');
+                        $('#track-'+id+' .like-number').text('1');
+                    },
+                    200: function () {
+                        console.log(200,'deleted');
+                        $('#track-'+id+' .like-number').text('0');
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    </script>
+{% endblock %}

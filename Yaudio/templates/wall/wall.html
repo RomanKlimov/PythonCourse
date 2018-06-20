@@ -1,0 +1,29 @@
+{% load wall_filter %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if posts %}
+    {% for post in posts %}
+        <p><b>{{ post.user.username }}</b></p>
+        <p>{{ post.text|hashtag|safe }}</p>
+        <i>{{ post.date }}</i>
+        <b>{{ post.src.source.text }}</b>
+        <form action="{% url 'repost' post.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Repost">
+        </form>
+    {% endfor %}
+{% else %}
+    No posts yet...
+{% endif %}
+
+
+</body>
+<script>
+
+</script>
+</html>

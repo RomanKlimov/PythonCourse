@@ -1,0 +1,9 @@
+body {
+    color: blue;
+}
+a {
+    color: red;
+}
+a:visited {
+    color: darkorchid;
+}

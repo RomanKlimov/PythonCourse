@@ -1,0 +1,26 @@
+{% load wall_filter %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ tag }}</title>
+</head>
+<body>
+<h2>Posts with <b>#{{ tag }}</b></h2>
+{% for post in posts %}
+        <marquee id="{{ forloop.counter0 }}">
+            <p><b>{{ post.user.username }}</b></p>
+            <p>{{ post.text|hashtag|safe }}</p>
+            <i>{{ post.date }}</i>
+            <b>{{ post.src.source.text }}</b>
+        </marquee>
+{% endfor %}
+
+</body>
+<script>
+    var list = document.getElementsByTagName("marquee");
+    for (var i = 1; i < list.length; i++) {
+        list[i].setAttribute("scrollamount", String(i * 1.5))
+    }
+</script>
+</html>

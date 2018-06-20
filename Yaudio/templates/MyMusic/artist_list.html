@@ -1,0 +1,8 @@
+{% extends 'MyMusic/base.html' %}
+{% block content %}
+    <a href="{% url 'add_new_artist' %}">Add new artists</a>
+    {% for artist in artists %}
+        <p><a href="{% url 'artist_songs' artist.id %}">{{ artist }}</a></p>
+    {% endfor %}
+
+{% endblock %}

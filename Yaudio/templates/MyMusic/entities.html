@@ -1,0 +1,12 @@
+{% extends 'MyMusic/base.html' %}
+{% block content %}
+    {% if entities %}
+        {% for entity in entities %}
+            <div>{{ entity }}</div>
+        {% endfor %}
+    {% else %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+
+
+{% endblock %}
